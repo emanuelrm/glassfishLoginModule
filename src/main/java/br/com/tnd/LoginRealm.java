@@ -18,12 +18,14 @@ public class LoginRealm extends AppservRealm {
 
     private String urlFirstLdap;
     private String urlSecondLdap;
+    private String jaasContext;
 
     @Override
     protected void init(Properties props) throws BadRealmException, NoSuchRealmException {
         _logger.info("Login Realm: init()");
         urlFirstLdap = props.getProperty("url-first-ldap", "ldap:192.168.40.5:389");
         urlSecondLdap = props.getProperty("url-second-ldap", "ldap:192.168.40.1:389");
+        jaasContext = props.getProperty("jaas-context", "loginSigRealm");
     }
 
     public String getAuthType() {
@@ -41,5 +43,10 @@ public class LoginRealm extends AppservRealm {
 
     public String getUrlSecondLdap() {
         return urlSecondLdap;
+    }
+
+    @Override
+    public synchronized String getJAASContext() {
+        return jaasContext;
     }
 }

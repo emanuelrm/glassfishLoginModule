@@ -26,7 +26,7 @@ public class LoginModule extends AppservPasswordLoginModule {
         principals.add(new PrincipalImpl(_username));
 
         String grpList[] = new String[1];
-        grpList[0] = "Admin";
+        grpList[0] = "ROLE_ADMIN";
         this.commitUserAuthentication(grpList);
 
     }
